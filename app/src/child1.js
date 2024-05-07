@@ -115,7 +115,6 @@ var yScale = d3.scaleLinear().domain([0,100]).range([h,0])
   .style('font-size', 12)
   .text('Dependant');
 
-  //add axis (append all graphical shit to g element)
   svg.append("g")
   .attr("transform", "translate(0," + h + ")")
   .call(d3.axisBottom(xScale));
@@ -134,7 +133,6 @@ var yScale = d3.scaleLinear().domain([0,100]).range([h,0])
   .attr("cy", function(d){return yScale(d.tip);}) // setting the vertical position (y-coordinate) of the center of the circle to be the scaled y-coordinate of the data point (d[1])
   .attr("r", 2)
   .style("fill", "#CC0000")
-  //changes the color when hovered over the dot
   .on("mouseover", function(event, d) {
     tooltip.style("opacity", 1);
     d3.select(this).attr("stroke", "black")
@@ -149,26 +147,17 @@ var yScale = d3.scaleLinear().domain([0,100]).range([h,0])
     tooltip.style("opacity", 0);
     d3.select(this).attr("stroke", "none");
 });
-  console.log("INSIDE", this.state.parentData)
 }
-
-//remove axis scales (in css)
-
 
 
   render() {
     return (
       <div className="container">
-        {/* this.onChangeValue is called onChange, which logs the selected value*/}
-
-        <div className="radio" onChange={this.onChangeValue}>
-
-          <label>  <input type="radio" value="tip" name="data" />  Tip
-          </label>
-          <label><input type="radio" value="total_bill" name="data" /> total_bill</label>
-          <label>  <input type="radio" value="sex" name="data" />Sex</label>
-        </div>
-        {/* SVG for the chart */}
+        <select className="radio" onChange={this.onChangeValue}>
+            <option value='A'>A</option>
+            <option value='B'>B</option>
+            <option value='X'>C</option>
+          </select>
         <div className="tooltip-container"></div>
 
         <svg className="child1_svg" width={500} height={1}>
